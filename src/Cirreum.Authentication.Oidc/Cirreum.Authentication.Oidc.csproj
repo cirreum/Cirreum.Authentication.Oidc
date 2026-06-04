@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<AssemblyName>Cirreum.Authentication.Oidc</AssemblyName>
+		<RootNamespace>Cirreum.Authentication</RootNamespace>
+		<Description>Generic OIDC authentication scheme for the Cirreum framework. Validates JWTs from any OIDC-compliant issuer using standard AddJwtBearer — no vendor SDK dependency. Renamed from Cirreum.Authorization.Oidc as part of the Cirreum 1.0 Foundation Reset.</Description>
+		<PackageTags>cirreum;authentication;oidc;jwt;openidconnect</PackageTags>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\Core\Cirreum.AuthenticationProvider\src\Cirreum.AuthenticationProvider\Cirreum.AuthenticationProvider.csproj" />
+
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.7" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="10.0.7" />
+		<PackageReference Include="Cirreum.Providers" Version="1.2.0" />
+
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Using Include="Cirreum.Providers" />
+	</ItemGroup>
+
+</Project>
