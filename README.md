@@ -1,7 +1,7 @@
 # Cirreum Authentication - OIDC
 
 [![NuGet Version](https://img.shields.io/nuget/v/Cirreum.Authentication.Oidc.svg?style=flat-square&labelColor=1F1F1F&color=003D8F)](https://www.nuget.org/packages/Cirreum.Authentication.Oidc/)
-[![License](https://img.shields.io/github/license/cirreum/Cirreum.Authentication.Oidc?style=flat-square&labelColor=1F1F1F&color=F2F2F2)](https://github.com/cirreum/Cirreum.Authentication.Oidc/blob/main/LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-F2F2F2?style=flat-square&labelColor=1F1F1F)](https://github.com/cirreum/Cirreum.Authentication.Oidc/blob/main/LICENSE)
 [![.NET](https://img.shields.io/badge/.NET-10.0-003D8F?style=flat-square&labelColor=1F1F1F)](https://dotnet.microsoft.com/)
 
 **Generic OIDC authentication scheme for the Cirreum framework**
