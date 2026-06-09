@@ -6,8 +6,6 @@
 
 **Generic OIDC authentication scheme for the Cirreum framework**
 
-> **Migrating from `Cirreum.Authorization.Oidc`?** Renamed successor. See [`docs/MIGRATION-v1.md`](docs/MIGRATION-v1.md).
-
 ## Overview
 
 **Cirreum.Authentication.Oidc** is the generic OIDC authentication scheme — validates JWTs from any OIDC-compliant issuer using standard `AddJwtBearer` (Web API) or `AddOpenIdConnect` (Web App), no vendor SDK. Suitable for Auth0, Okta, Ping, Descope, generic OIDC providers, and any IdP that publishes a `.well-known/openid-configuration`.

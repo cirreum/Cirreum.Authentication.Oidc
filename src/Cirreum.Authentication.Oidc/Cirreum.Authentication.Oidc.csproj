@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<AssemblyName>Cirreum.Authentication.Oidc</AssemblyName>
 		<RootNamespace>Cirreum.Authentication</RootNamespace>
-		<Description>Generic OIDC authentication scheme for the Cirreum framework. Validates JWTs from any OIDC-compliant issuer using standard AddJwtBearer — no vendor SDK dependency. Renamed from Cirreum.Authorization.Oidc as part of the Cirreum 1.0 Foundation Reset.</Description>
+		<Description>Generic OIDC authentication scheme for the Cirreum framework. Validates JWTs from any OIDC-compliant issuer using standard AddJwtBearer — no vendor SDK dependency.</Description>
 		<PackageTags>cirreum;authentication;oidc;jwt;openidconnect</PackageTags>
 	</PropertyGroup>
 
