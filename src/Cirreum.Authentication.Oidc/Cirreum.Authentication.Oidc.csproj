@@ -11,8 +11,8 @@
 		<!-- Cirreum.Providers (+ Kernel/Contracts/Result) flow in transitively via Cirreum.AuthenticationProvider. -->
 		<PackageReference Include="Cirreum.AuthenticationProvider" Version="1.1.0" />
 
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.7" />
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="10.0.7" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.9" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="10.0.9" />
 
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
