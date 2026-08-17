@@ -2,6 +2,7 @@ namespace Cirreum.Authentication;
 
 using Cirreum.AuthenticationProvider;
 using Cirreum.Authentication.Configuration;
+using Cirreum.Security;
 
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -21,6 +22,9 @@ public sealed class OidcAuthenticationRegistrar
 
 	/// <inheritdoc/>
 	public override string ProviderName => "Oidc";
+
+	/// <inheritdoc/>
+	public override SubjectKind SubjectKind => SubjectKind.Human;
 
 	/// <inheritdoc/>
 	public override void ValidateSettings(OidcAuthenticationInstanceSettings settings) {

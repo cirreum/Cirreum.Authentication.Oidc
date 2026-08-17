@@ -8,6 +8,16 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) — [SemVer](ht
 
 ## [Unreleased]
 
+### Added
+
+- **Declares `SubjectKind.Human`.** OIDC schemes validate tokens issued to people, so nothing
+  downstream has to infer it from whether a token happens to carry a name claim — which matters
+  most here, since an application that owns its users' attributes issues deliberately thin tokens.
+
+### Updated
+
+- Updated NuGet packages.
+
 ## [1.0.11] - 2026-08-04
 
 ### Updated
