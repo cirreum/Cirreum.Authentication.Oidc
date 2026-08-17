@@ -13,6 +13,18 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) — [SemVer](ht
 - **Declares `SubjectKind.Human`.** OIDC schemes validate tokens issued to people, so nothing
   downstream has to infer it from whether a token happens to carry a name claim — which matters
   most here, since an application that owns its users' attributes issues deliberately thin tokens.
+  The declaration is contributed per instance by the audience registrar base (the registration
+  funnel, `Cirreum.AuthenticationProvider` 3.0.1).
+- **The Web App cookie scheme is registered once per host and declared.** The cookie session
+  scheme keeps the platform-default name for sign-in interop, is now registered once regardless
+  of instance count (a second interactive instance previously re-registered it and failed at
+  startup), and declares `SubjectKind.Unknown` — a continuation re-presenting the subject the
+  OIDC sign-in established.
+
+### Changed
+
+- Registrar hooks take `IAuthenticationBuilder` per the `Cirreum.AuthenticationProvider` 3.0.1
+  contract consolidation. Registrar plumbing only; not app-facing surface.
 
 ### Updated
 

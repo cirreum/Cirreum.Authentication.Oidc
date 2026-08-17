@@ -4,7 +4,7 @@ using Cirreum.AuthenticationProvider;
 using Cirreum.Authentication.Configuration;
 using Cirreum.Security;
 
-using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,8 +39,8 @@ public sealed class OidcAuthenticationRegistrar
 	/// <inheritdoc/>
 	public override void AddAuthenticationForWebApi(IConfigurationSection instanceSection,
 		OidcAuthenticationInstanceSettings providerSettings,
-		AuthenticationBuilder authBuilder) {
-		authBuilder.AddJwtBearer(providerSettings.Scheme, options => {
+		IAuthenticationBuilder builder) {
+		builder.AuthBuilder.AddJwtBearer(providerSettings.Scheme, options => {
 
 			// Secure default — consumer can override via config if needed (e.g. dev tunnels).
 			options.RequireHttpsMetadata = true;
@@ -79,9 +79,21 @@ public sealed class OidcAuthenticationRegistrar
 	/// <inheritdoc/>
 	public override void AddAuthenticationForWebApp(IConfigurationSection instanceSection,
 		OidcAuthenticationInstanceSettings providerSettings,
-		AuthenticationBuilder authBuilder) {
-		authBuilder.AddCookie("Cookies");
-		authBuilder.AddOpenIdConnect(providerSettings.Scheme, options => {
+		IAuthenticationBuilder builder) {
+
+		// One cookie session scheme per host, shared by every interactive instance — the
+		// platform-default name, so sign-in interop (Identity Web, app code) keeps working.
+		// The declaration record doubles as the registered-once guard: cookie registration
+		// and cookie declaration happen together or not at all. The cookie is a continuation
+		// — it re-presents the subject the OIDC sign-in established — so it declares Unknown.
+		var cookieScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+		if (!builder.Services.Any(d => d.ImplementationInstance is SchemeClaimAuthorityRegistration r
+			&& r.Scheme == cookieScheme)) {
+			builder.AuthBuilder.AddCookie(cookieScheme);
+			builder.DeclareScheme(cookieScheme, SubjectKind.Unknown);
+		}
+
+		builder.AuthBuilder.AddOpenIdConnect(providerSettings.Scheme, options => {
 
 			options.RequireHttpsMetadata = true;
 
@@ -99,8 +111,8 @@ public sealed class OidcAuthenticationRegistrar
 			options.Scope.Add("profile");
 
 			// Sign user into the cookie scheme; sign challenges out of it.
-			options.SignInScheme = "Cookies";
-			options.SignOutScheme = "Cookies";
+			options.SignInScheme = cookieScheme;
+			options.SignOutScheme = cookieScheme;
 
 			// Claim mapping — same as WebApi.
 			options.MapInboundClaims = false;
